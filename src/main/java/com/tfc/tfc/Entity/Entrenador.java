@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Table(name = "entrenador")
 public class Entrenador {
     @Id
-    @Column(name = "id_entrenador", nullable = false)
+    @Column(name  = "id_entrenador", nullable = false)
     private Integer id;
 
     @Column(name = "nombre", length = 100)
