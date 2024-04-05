@@ -1,10 +1,12 @@
-package com.tfc.tfc.Entity;
+package com.tfc.tfc.LIGA.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
@@ -12,6 +14,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
 @Table(name = "entrenador")
 public class Entrenador {
     @Id
@@ -30,4 +33,7 @@ public class Entrenador {
     @Column(name = "fecha_de_nacimiento")
     private LocalDate fechaDeNacimiento;
 
+    public Entrenador() {
+
+    }
 }
