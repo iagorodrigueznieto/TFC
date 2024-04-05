@@ -1,7 +1,9 @@
-package com.tfc.tfc.Entity;
+package com.tfc.tfc.LIGA.Model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -11,6 +13,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "jugador")
 public class Jugador {
     @Id
@@ -29,10 +32,10 @@ public class Jugador {
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_equipo", nullable = false)
-    private Equipo idEquipo;
+    private Equipos idEquipo;
 
     @Column(name = "Tarjetas_Amarillas", nullable = false)
     private Integer tarjetasAmarillas;
@@ -52,4 +55,18 @@ public class Jugador {
     @Column(name = "imagen", length = 400)
     private String imagen;
 
+    public Jugador(Integer id, String nombre, String apellidos, String posicion, LocalDate fechaNacimiento, Equipos idEquipo, Integer tarjetasAmarillas, Integer tarjetasRojas, Integer partidosJugados, Integer goles, Integer asistencias, String imagen) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.posicion = posicion;
+        this.fechaNacimiento = fechaNacimiento;
+        this.idEquipo = idEquipo;
+        this.tarjetasAmarillas = tarjetasAmarillas;
+        this.tarjetasRojas = tarjetasRojas;
+        this.partidosJugados = partidosJugados;
+        this.goles = goles;
+        this.asistencias = asistencias;
+        this.imagen = imagen;
+    }
 }

@@ -1,26 +1,36 @@
-package com.tfc.tfc.Entity;
+package com.tfc.tfc.LIGA.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+import java.io.Serializable;
+
+@Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "equipos")
-public class Equipo {
+public class Equipos implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "id_equipo", nullable = false)
-    private Integer id;
+    private Integer idEquipo;
 
-    @Column(name = "nombre_equipo", length = 100)
+    @Column(name = "nombre_equipo")
     private String nombreEquipo;
 
-    @Column(name = "ciudad", length = 100)
+    @Column(name = "ciudad")
     private String ciudad;
+
+    @Column(name = "id_entrenador", nullable = false)
+    private Integer idEntrenador;
 
     @Column(name = "Partidos_Ganados", nullable = false)
     private Integer partidosGanados;
@@ -31,8 +41,7 @@ public class Equipo {
     @Column(name = "Partidos_Empatados", nullable = false)
     private Integer partidosEmpatados;
 
-    @Column(name = "imagen", length = 300)
+    @Column(name = "imagen")
     private String imagen;
 
-    private Integer PartidosJugados=partidosEmpatados+partidosGanados+partidosPerdidos;
 }
