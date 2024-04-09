@@ -1,4 +1,4 @@
-package com.tfc.tfc.User.Modelo;
+package com.tfc.tfc.User.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

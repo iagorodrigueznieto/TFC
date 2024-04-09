@@ -1,4 +1,4 @@
-package com.tfc.tfc.User.dto;
+package com.tfc.tfc.User.Dto;
 
 
 import lombok.Data;

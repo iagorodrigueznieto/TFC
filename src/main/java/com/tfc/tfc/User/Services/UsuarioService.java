@@ -1,6 +1,6 @@
 package com.tfc.tfc.User.Services;
 
-import com.tfc.tfc.User.Modelo.Usuarios;
+import com.tfc.tfc.User.Model.Usuarios;
 import com.tfc.tfc.User.Repository.UsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

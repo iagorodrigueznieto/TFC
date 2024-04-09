@@ -4,36 +4,32 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.sql.Date;
 
-@Getter
-@Setter
+@Data
 @Entity
-@AllArgsConstructor
 @Table(name = "entrenador")
-public class Entrenador {
+public class Entrenador implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "id_entrenador", nullable = false)
-    private Integer id;
+    private Integer idEntrenador;
 
-    @Column(name = "nombre", length = 100)
+    @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "apellido", length = 100)
+    @Column(name = "apellido")
     private String apellido;
 
-    @Column(name = "nacionalidad", length = 100)
+    @Column(name = "nacionalidad")
     private String nacionalidad;
 
     @Column(name = "fecha_de_nacimiento")
-    private LocalDate fechaDeNacimiento;
+    private Date fechaDeNacimiento;
 
-    public Entrenador() {
-
-    }
 }
