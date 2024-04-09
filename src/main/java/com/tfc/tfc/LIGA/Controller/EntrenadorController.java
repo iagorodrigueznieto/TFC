@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Validated
 @RequiredArgsConstructor
 @RequestMapping("entrenadores")
 public class EntrenadorController {
@@ -26,13 +25,13 @@ public class EntrenadorController {
         return ResponseEntity.ok(entrenadorService.findAllEntrenadores());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/entrenador")
     private ResponseEntity<Entrenador> getEntrenadorById(Integer id) {
         return ResponseEntity.ok(entrenadorService.findEntrenadorPorId(id));
     }
 
-    @DeleteMapping("/{id}")
-    private ResponseEntity<?> EliminarEntrenadorByID(@PathVariable Integer id) {
+    @DeleteMapping
+    private ResponseEntity<?> EliminarEntrenadorByID(@RequestParam Integer id) {
         ResponseEntity<?> result = ResponseEntity.status(HttpStatus.OK).build();
         entrenadorService.EliminarEntrenador(entrenadorService.findEntrenadorPorId(id));
         return result;

@@ -20,14 +20,17 @@ public class LigaService {
     private final IJdbcLigaRepository jdbcLigaRepository;
 
 
+    public Liga crearLiga(Liga liga) {
+        return ligaRepository.save(liga);
+    }
 
     public List<Liga> getAllLigas() {
         return ligaRepository.findAll();
     }
+
     public Liga getLigaById(int id) {
         return ligaRepository.findById(id).orElse(null);
     }
-
 
 
 }

@@ -1,12 +1,16 @@
 package com.tfc.tfc.LIGA.Model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "liga")
 public class Liga implements Serializable {
 
@@ -22,5 +26,4 @@ public class Liga implements Serializable {
 
     @Column(name = "Nacional", nullable = false)
     private Boolean nacional;
-
 }

@@ -5,10 +5,7 @@ import com.tfc.tfc.LIGA.Services.LigaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +25,21 @@ public class LigaController {
     private ResponseEntity<Liga> getLigaById(@RequestParam int id) {
         return ResponseEntity.ok(ligaService.getLigaById(id));
     }
+
+    @PostMapping("/Crear")
+    private ResponseEntity<Liga> createLiga(@RequestParam Integer id, @RequestParam String nombre, @RequestParam Boolean Nacional ) {
+        if (ligaService.getLigaById(id)==null){
+            Liga liga=new Liga(id, nombre, Nacional);
+            ligaService.crearLiga(liga);
+            return ResponseEntity.ok(liga);
+        }else{
+        }
+
+        return ResponseEntity.ok(ligaService.getLigaById(id));
+    }
+
+
+
+
 
 }
