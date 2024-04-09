@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -36,4 +37,18 @@ public class EntrenadorController {
         entrenadorService.EliminarEntrenador(entrenadorService.findEntrenadorPorId(id));
         return result;
     }
+
+    @PostMapping
+    private ResponseEntity<Entrenador> postEntrenador(@RequestParam Integer id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String nacionalidad, @RequestParam Date fechaNacimiento) {
+        ResponseEntity<Entrenador> result = ResponseEntity.status(HttpStatus.OK).build();
+        if (entrenadorService.findEntrenadorPorId(id) == null) {
+            entrenadorService.GuardarEntrenador(new Entrenador(id, nombre, apellido, nacionalidad, fechaNacimiento));
+            return result;
+        } else {
+            return result;
+        }
+
+    }
+
+
 }
