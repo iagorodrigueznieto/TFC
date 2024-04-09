@@ -4,16 +4,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "equipos")
 public class Equipos implements Serializable {
 
@@ -43,5 +39,8 @@ public class Equipos implements Serializable {
 
     @Column(name = "imagen")
     private String imagen;
+
+    @Column(name = "PartidosJugados")
+    private Integer partidosJugados;
 
 }

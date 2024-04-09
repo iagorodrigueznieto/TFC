@@ -1,6 +1,6 @@
-package com.tfc.tfc.User.Controlador;
+package com.tfc.tfc.User.Controller;
 
-import com.tfc.tfc.User.Modelo.Usuarios;
+import com.tfc.tfc.User.Model.Usuarios;
 import com.tfc.tfc.User.Services.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EntityScan(basePackages = {"com.tfc.tfc.User.Modelo"})
 public class TfcApplication {
 
     public static void main(String[] args) {

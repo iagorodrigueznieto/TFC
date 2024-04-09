@@ -1,41 +1,33 @@
 package com.tfc.tfc.LIGA.Model;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.sql.Date;
 
-@Getter
-@Setter
+@Data
 @Entity
-@NoArgsConstructor
 @Table(name = "jugador")
-public class Jugador {
+public class Jugador implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "id_jugador", nullable = false)
-    private Integer id;
+    private Integer idJugador;
 
-    @Column(name = "nombre", length = 100)
+    @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "apellidos", length = 100)
-    private String apellidos;
-
-    @Column(name = "posicion", length = 100)
-    private String posicion;
-
     @Column(name = "fecha_nacimiento")
-    private LocalDate fechaNacimiento;
+    private Date fechaNacimiento;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_equipo", nullable = false)
-    private Equipos idEquipo;
+    @Column(name = "id_equipo", nullable = false)
+    private Integer idEquipo;
 
     @Column(name = "Tarjetas_Amarillas", nullable = false)
     private Integer tarjetasAmarillas;
@@ -52,21 +44,10 @@ public class Jugador {
     @Column(name = "Asistencias", nullable = false)
     private Integer asistencias;
 
-    @Column(name = "imagen", length = 400)
+    @Column(name = "imagen")
     private String imagen;
 
-    public Jugador(Integer id, String nombre, String apellidos, String posicion, LocalDate fechaNacimiento, Equipos idEquipo, Integer tarjetasAmarillas, Integer tarjetasRojas, Integer partidosJugados, Integer goles, Integer asistencias, String imagen) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.posicion = posicion;
-        this.fechaNacimiento = fechaNacimiento;
-        this.idEquipo = idEquipo;
-        this.tarjetasAmarillas = tarjetasAmarillas;
-        this.tarjetasRojas = tarjetasRojas;
-        this.partidosJugados = partidosJugados;
-        this.goles = goles;
-        this.asistencias = asistencias;
-        this.imagen = imagen;
-    }
+    @Column(name = "Cod_Posicion", nullable = false)
+    private Integer codPosicion;
+
 }

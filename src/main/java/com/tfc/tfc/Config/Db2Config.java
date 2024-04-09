@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableJpaRepositories(
         entityManagerFactoryRef = "studentEntityManagerFactory",
-        basePackages 	 = {"com.tfc.tfc.User.Repository", "com.tfc.tfc.User.Modelo.Usuarios"},
+        basePackages 	 = {"com.tfc.tfc.User.Repository", "com.tfc.tfc.User.Model"},
         transactionManagerRef = "studentTransactionManager"
 )
 
@@ -57,7 +57,7 @@ public class Db2Config {
         properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         bean.setJpaPropertyMap(properties);
-        bean.setPackagesToScan("com.tfc.tfc.User.Modelo");
+        bean.setPackagesToScan("com.tfc.tfc.User.Model");
         return bean;
 
     }
