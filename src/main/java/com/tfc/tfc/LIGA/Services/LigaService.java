@@ -32,5 +32,9 @@ public class LigaService {
         return ligaRepository.findById(id).orElse(null);
     }
 
+    public void deleteLiga(Liga liga) {
+        ligaRepository.delete(liga);
+    }
+
 
 }

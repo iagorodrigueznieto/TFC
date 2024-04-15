@@ -37,4 +37,8 @@ public class JugadorController {
         return ResponseEntity.ok(jugadorService.getMaximosGoleadoresde1Liga(numero));
     }
 
+    @GetMapping("/equipo")
+    public ResponseEntity<List<Jugador>> getJugadorDe1Equipo(@RequestParam Integer codEquipo) {
+        return ResponseEntity.ok(jugadorService.getJugadoresDe1Equipo(codEquipo));
+    }
 }
