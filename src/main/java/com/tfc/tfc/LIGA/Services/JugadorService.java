@@ -32,4 +32,9 @@ public class JugadorService {
         return jugadorRepositoryImpl.buscarMaximosGoleadoresDe1Liga(codLiga);
     }
 
+
+    public List<Jugador> getJugadoresDe1Equipo(Integer codEquipo){
+        return jugadorRepositoryImpl. buscarJugadoresDe1Equipo(codEquipo);
+    }
+
 }
