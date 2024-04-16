@@ -66,6 +66,7 @@ public class Db1Config {
         bean.setJpaVendorAdapter(adapter);
         HashMap<String,Object> properties = new HashMap<String, Object>();
         properties.put("hibernate.hbm2ddl.auto", "update");
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         bean.setJpaPropertyMap(properties);
         bean.setPackagesToScan("com.tfc.tfc.LIGA.Model");
         return bean;
