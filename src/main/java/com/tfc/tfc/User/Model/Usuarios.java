@@ -1,34 +1,38 @@
 package com.tfc.tfc.User.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.io.Serializable;
-
-@Data
+@Getter
+@Setter
 @Entity
-@Table(name = "Usuarios")
-public class Usuarios implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+@Table(name = "usuarios")
+public class Usuarios {
     @Id
-    @Column(name = "id_user", nullable = false)
-    private Long idUser;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario", nullable = false)
+    private Integer id;
 
-    @Column(name = "userName", nullable = false)
-    private String userName;
+    @Size(max = 100)
+    @NotNull
+    @Column(name = "login", nullable = false, length = 100)
+    private String login;
 
-    @Column(name = "Password", nullable = false)
-    private String password;
+    @Size(max = 100)
+    @NotNull
+    @Column(name = "correo", nullable = false, length = 100)
+    private String correo;
 
-    @Column(name = "image")
-    private String image;
+    @Size(max = 100)
+    @NotNull
+    @Column(name = "`contraseña`", nullable = false, length = 100)
+    private String contraseña;
 
-    @Column(name = "Mail", nullable = false)
-    private String mail;
+    @NotNull
+    @JoinColumn(name = "cod_Rol", nullable = false)
+    private Integer codRol;
 
 }
