@@ -6,6 +6,7 @@ import com.tfc.tfc.User.Repository.jdcb.JdbcUsuariosRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class UsuarioService {
         usuariosRepository.deleteById(id);
     }
 
-
+@Transactional(transactionManager = "studentTransactionManager")
     public boolean loginUsuario(String login, String contraseña) {
         return jdbcUsuariosRepository.login(login, contraseña);
     }

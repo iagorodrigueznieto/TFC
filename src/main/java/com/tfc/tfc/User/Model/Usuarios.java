@@ -11,8 +11,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "usuarios")
 public class Usuarios {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_usuario", nullable = false)
     private Integer id;
 
@@ -33,6 +34,6 @@ public class Usuarios {
 
     @NotNull
     @JoinColumn(name = "cod_Rol", nullable = false)
-    private Integer codRol;
+    private Integer cod_Rol;
 
 }

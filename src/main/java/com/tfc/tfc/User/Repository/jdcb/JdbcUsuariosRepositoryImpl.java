@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class JdbcUsuariosRepositoryImpl {
     private final JdbcTemplate jdbcTemplate;
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    @Transactional(transactionManager = "studentTransactionManager")
     public boolean login(String username, String password) {
 
         String sql = "select * from usuarios.usuarios where login = :username and contraseña = :password";
@@ -30,5 +32,4 @@ public class JdbcUsuariosRepositoryImpl {
             return false;
         }
     }
-
 }
