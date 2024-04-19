@@ -19,17 +19,13 @@ public class JdbcUsuariosRepositoryImpl {
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Transactional(transactionManager = "studentTransactionManager")
-    public boolean login(String username, String password) {
+    public Usuarios login(String username, String password) {
 
         String sql = "select * from usuarios.usuarios where login = :username and contraseña = :password";
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("username", username);
         params.addValue("password", password);
         List<Usuarios> lista = namedParameterJdbcTemplate.query(sql, params, new BeanPropertyRowMapper<>(Usuarios.class));
-        if (lista.size() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return lista.get(0);
     }
 }

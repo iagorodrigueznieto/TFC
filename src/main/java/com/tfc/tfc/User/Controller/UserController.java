@@ -33,12 +33,8 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity<Boolean> login(@RequestParam String login, @RequestParam String password) {
-        if (usuarioService.loginUsuario(login, password)) {
-            return ResponseEntity.ok(true);
-        } else {
-            return ResponseEntity.ok(false);
-        }
+    public ResponseEntity<Usuarios> login(@RequestParam String login, @RequestParam String password) {
+        return ResponseEntity.ok(usuarioService.loginUsuario(login, password));
     }
 
 }

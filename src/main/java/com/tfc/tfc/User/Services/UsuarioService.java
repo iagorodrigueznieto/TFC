@@ -36,7 +36,7 @@ public class UsuarioService {
     }
 
 @Transactional(transactionManager = "studentTransactionManager")
-    public boolean loginUsuario(String login, String contraseña) {
+    public Usuarios loginUsuario(String login, String contraseña) {
         return jdbcUsuariosRepository.login(login, contraseña);
     }
 
