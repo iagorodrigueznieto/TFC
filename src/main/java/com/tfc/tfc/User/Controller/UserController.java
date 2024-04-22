@@ -1,6 +1,6 @@
 package com.tfc.tfc.User.Controller;
 
-import com.tfc.tfc.User.Model.Usuarios;
+import com.tfc.tfc.User.Model.Usuario;
 import com.tfc.tfc.User.Services.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,20 +21,23 @@ public class UserController {
     private final UsuarioService usuarioService;
 
 
-
     @GetMapping
-    public ResponseEntity<List<Usuarios>> getUsuarios() {
+    public ResponseEntity<List<Usuario>> getUsuarios() {
         return ResponseEntity.ok(usuarioService.getAllUsuarios());
     }
 
     @PostMapping
-    public ResponseEntity<Usuarios> postUsuarios( @RequestBody Usuarios usuario) {
+    public ResponseEntity<Usuario> postUsuarios(@RequestBody Usuario usuario) {
         return ResponseEntity.ok(usuarioService.CreateUsuario(usuario));
     }
 
     @GetMapping("/login")
-    public ResponseEntity<Usuarios> login(@RequestParam String login, @RequestParam String password) {
-        return ResponseEntity.ok(usuarioService.loginUsuario(login, password));
+    public ResponseEntity<Usuario> login(@RequestParam String login, @RequestParam String password) {
+        if (usuarioService.loginUsuario(login, password) == null) {
+            return ResponseEntity.status(350).build();
+        } else {
+            return ResponseEntity.ok(usuarioService.loginUsuario(login, password));
+        }
     }
 
 }

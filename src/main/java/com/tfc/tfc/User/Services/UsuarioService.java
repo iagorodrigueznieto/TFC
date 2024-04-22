@@ -1,10 +1,9 @@
 package com.tfc.tfc.User.Services;
 
-import com.tfc.tfc.User.Model.Usuarios;
+import com.tfc.tfc.User.Model.Usuario;
 import com.tfc.tfc.User.Repository.UsuariosRepository;
 import com.tfc.tfc.User.Repository.jdcb.JdbcUsuariosRepositoryImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,15 +18,15 @@ public class UsuarioService {
     private final JdbcUsuariosRepositoryImpl jdbcUsuariosRepository;
 
 
-    public List<Usuarios> getAllUsuarios() {
+    public List<Usuario> getAllUsuarios() {
         return usuariosRepository.findAll();
     }
 
-    public Usuarios getUsuariosById(Integer id) {
+    public Usuario getUsuariosById(Integer id) {
         return usuariosRepository.findById(id).orElse(null);
     }
 
-    public Usuarios CreateUsuario(Usuarios usuarios) {
+    public Usuario CreateUsuario(Usuario usuarios) {
         return usuariosRepository.save(usuarios);
     }
 
@@ -35,8 +34,8 @@ public class UsuarioService {
         usuariosRepository.deleteById(id);
     }
 
-@Transactional(transactionManager = "studentTransactionManager")
-    public Usuarios loginUsuario(String login, String contraseña) {
+    @Transactional(transactionManager = "studentTransactionManager")
+    public Usuario loginUsuario(String login, String contraseña) {
         return jdbcUsuariosRepository.login(login, contraseña);
     }
 

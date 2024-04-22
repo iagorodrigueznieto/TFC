@@ -1,6 +1,6 @@
 package com.tfc.tfc.User.Repository.jdcb;
 
-import com.tfc.tfc.User.Model.Usuarios;
+import com.tfc.tfc.User.Model.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,13 +19,16 @@ public class JdbcUsuariosRepositoryImpl {
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Transactional(transactionManager = "studentTransactionManager")
-    public Usuarios login(String username, String password) {
+    public Usuario login(String username, String password) {
 
         String sql = "select * from usuarios.usuarios where login = :username and contraseña = :password";
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("username", username);
         params.addValue("password", password);
-        List<Usuarios> lista = namedParameterJdbcTemplate.query(sql, params, new BeanPropertyRowMapper<>(Usuarios.class));
+        List<Usuario> lista = namedParameterJdbcTemplate.query(sql, params, new BeanPropertyRowMapper<>(Usuario.class));
+       if (lista.isEmpty()){
+           return null;
+       }
         return lista.get(0);
     }
 }

@@ -28,19 +28,8 @@ public class Equipos implements Serializable {
     @Column(name = "id_entrenador", nullable = false)
     private Integer idEntrenador;
 
-    @Column(name = "Partidos_Ganados", nullable = false)
-    private Integer partidosGanados;
-
-    @Column(name = "Partidos_Perdidos", nullable = false)
-    private Integer partidosPerdidos;
-
-    @Column(name = "Partidos_Empatados", nullable = false)
-    private Integer partidosEmpatados;
-
     @Column(name = "imagen")
     private String imagen;
 
-    @Column(name = "PartidosJugados")
-    private Integer partidosJugados;
 
 }
