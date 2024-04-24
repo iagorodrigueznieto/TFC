@@ -12,11 +12,8 @@ import org.hibernate.annotations.ColumnDefault;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario", nullable = false)
-    private Integer id_usuario;
 
+    @Id
     @Size(max = 100)
     @NotNull
     @Column(name = "login", nullable = false, length = 100)
@@ -34,4 +31,5 @@ public class Usuario {
 
     private Integer cod_Rol;
 
+    private String Imagen;
 }

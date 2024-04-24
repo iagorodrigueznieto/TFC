@@ -28,7 +28,12 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<Usuario> postUsuarios(@RequestBody Usuario usuario) {
-        return ResponseEntity.ok(usuarioService.CreateUsuario(usuario));
+        Usuario usuario1 = usuarioService.CreateUsuario(usuario);
+        if (usuario1 == null) {
+            return ResponseEntity.status(350).build();
+        } else {
+            return ResponseEntity.ok(usuario1);
+        }
     }
 
     @GetMapping("/login")

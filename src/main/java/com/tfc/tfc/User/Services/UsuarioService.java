@@ -27,10 +27,16 @@ public class UsuarioService {
     }
 
     public Usuario CreateUsuario(Usuario usuarios) {
-        return usuariosRepository.save(usuarios);
+        Usuario usuario= usuariosRepository.findById(usuarios.getLogin()).orElse(null);
+        if(usuario==null){
+            return usuariosRepository.save(usuarios);
+        }
+        else {
+            return null;
+        }
     }
 
-    public void deleteUsuarios(Integer id) {
+    public void deleteUsuarios(String id) {
         usuariosRepository.deleteById(id);
     }
 
