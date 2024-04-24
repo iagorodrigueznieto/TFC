@@ -21,7 +21,7 @@ public class JdbcUsuariosRepositoryImpl {
     @Transactional(transactionManager = "studentTransactionManager")
     public Usuario login(String username, String password) {
 
-        String sql = "select * from usuarios.usuarios where login = :username and contraseña = :password";
+        String sql = "select * from usuarios.usuarios where BINARY login = :username and BINARY contraseña = :password";
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("username", username);
         params.addValue("password", password);

@@ -26,4 +26,5 @@ public class Liga implements Serializable {
 
     @Column(name = "Nacional", nullable = false)
     private Boolean nacional;
+
 }

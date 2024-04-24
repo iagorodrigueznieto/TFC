@@ -1,6 +1,7 @@
 package com.tfc.tfc.LIGA.Repository.jdbc.Impl;
 
-import com.tfc.tfc.LIGA.Model.Equipos;
+import com.tfc.tfc.LIGA.Dto.ClasificacionOutputDto;
+import com.tfc.tfc.LIGA.Model.Equipo;
 import com.tfc.tfc.LIGA.Repository.jdbc.IJdbcEquiposRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -12,18 +13,18 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class JdbcEquipoReposirotyImpl implements IJdbcEquiposRepository {
+public class JdbcEquipoRepositoryImpl implements IJdbcEquiposRepository {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Override
-    public List<Equipos> clasificacionEquipos(Integer codLiga) {
-        String QUERY = "select e.nombre, el.puntos from equipos e " +
+    public List<ClasificacionOutputDto> clasificacionEquipos(Integer codLiga) {
+        String QUERY = "select e.*, el.puntos from equipos e " +
                 "inner join equipo_liga el on el.Cod_equipo = e.id_equipo " +
-                "where el.Cod_liga = :codliga" +
+                "where el.Cod_liga = :codliga " +
                 "order by el.puntos desc";
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("codliga", codLiga);
-        return namedParameterJdbcTemplate.query(QUERY, params, new BeanPropertyRowMapper<>(Equipos.class));
+        return namedParameterJdbcTemplate.query(QUERY, params, new BeanPropertyRowMapper<>(ClasificacionOutputDto.class));
     }
 }

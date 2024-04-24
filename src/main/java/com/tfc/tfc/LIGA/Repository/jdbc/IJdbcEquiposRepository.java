@@ -1,10 +1,11 @@
 package com.tfc.tfc.LIGA.Repository.jdbc;
 
-import com.tfc.tfc.LIGA.Model.Equipos;
+import com.tfc.tfc.LIGA.Dto.ClasificacionOutputDto;
+import com.tfc.tfc.LIGA.Model.Equipo;
 
 import java.util.List;
 
 public interface IJdbcEquiposRepository {
 
-    List<Equipos>  clasificacionEquipos(Integer codLiga);
+    List<ClasificacionOutputDto>  clasificacionEquipos(Integer codLiga);
 }
