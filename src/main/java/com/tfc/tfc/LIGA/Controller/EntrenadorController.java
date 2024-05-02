@@ -17,7 +17,6 @@ public class EntrenadorController {
 
     private final EntrenadorService entrenadorService;
 
-
     @GetMapping
     private ResponseEntity<List<Entrenador>> getEntrenadores() {
         return ResponseEntity.ok(entrenadorService.findAllEntrenadores());
@@ -44,8 +43,11 @@ public class EntrenadorController {
             return ResponseEntity.ok(entrenador);
         }
 
-
     }
 
+    @GetMapping("/libres")
+    private ResponseEntity<List<Entrenador>> getEntrenadoresLibres() {
+        return ResponseEntity.ok(entrenadorService.findEntrenadorWithNoTeam());
+    }
 
 }

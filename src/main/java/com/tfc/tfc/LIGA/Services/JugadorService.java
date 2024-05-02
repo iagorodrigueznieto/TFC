@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class JugadorService {
+
     @Qualifier("IJdbcJugadorRepository")
     private final IJdbcJugadorRepository jugadorRepositoryImpl;
 

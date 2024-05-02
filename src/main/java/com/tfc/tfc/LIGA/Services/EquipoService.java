@@ -27,5 +27,13 @@ public class EquipoService {
         return jdbcEquipoReposiroty.clasificacionEquipos(codLiga);
     }
 
+    public Equipo guardarEquipos(Equipo equipo) {
+        return equipoRepository.save(equipo);
+    }
+
+    public Integer cogerMaxId() {
+       return jdbcEquipoReposiroty.cogerMaxId();
+    }
+
 
 }

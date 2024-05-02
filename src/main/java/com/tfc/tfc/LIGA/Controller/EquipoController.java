@@ -5,10 +5,7 @@ import com.tfc.tfc.LIGA.Model.Equipo;
 import com.tfc.tfc.LIGA.Services.EquipoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,14 @@ public class EquipoController {
     @GetMapping
     public ResponseEntity<List<Equipo>> getEquiposByLiga(){
         return ResponseEntity.ok(equipoService.getAllEquipos());
+    }
+
+    @PostMapping
+    public ResponseEntity<Equipo> addEquipo(@RequestBody Equipo equipo){
+        return ResponseEntity.ok(equipoService.guardarEquipos(equipo));
+    }
+    @GetMapping("/maxId")
+    public ResponseEntity<Integer> cogerMaxId(){
+        return ResponseEntity.ok(equipoService.cogerMaxId());
     }
 }

@@ -27,4 +27,12 @@ public class JdbcEquipoRepositoryImpl implements IJdbcEquiposRepository {
         params.addValue("codliga", codLiga);
         return namedParameterJdbcTemplate.query(QUERY, params, new BeanPropertyRowMapper<>(ClasificacionOutputDto.class));
     }
+
+    @Override
+    public Integer cogerMaxId() {
+        String QUERY = "select * from equipos ORDER BY id_equipo DESC";
+        MapSqlParameterSource map=new MapSqlParameterSource();
+         List <Equipo> a=namedParameterJdbcTemplate.query(QUERY, map,new BeanPropertyRowMapper<>(Equipo.class));
+         return a.get(0).getIdEquipo();
+    }
 }

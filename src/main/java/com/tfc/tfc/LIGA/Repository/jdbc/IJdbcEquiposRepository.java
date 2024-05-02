@@ -8,4 +8,6 @@ import java.util.List;
 public interface IJdbcEquiposRepository {
 
     List<ClasificacionOutputDto>  clasificacionEquipos(Integer codLiga);
+
+    Integer cogerMaxId();
 }

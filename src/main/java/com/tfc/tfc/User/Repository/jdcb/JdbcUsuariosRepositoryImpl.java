@@ -28,7 +28,7 @@ public class JdbcUsuariosRepositoryImpl {
         List<Usuario> lista = namedParameterJdbcTemplate.query(sql, params, new BeanPropertyRowMapper<>(Usuario.class));
        if (lista.isEmpty()){
            return null;
-       }
+       } 
         return lista.get(0);
     }
 }
