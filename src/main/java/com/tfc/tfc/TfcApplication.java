@@ -12,6 +12,7 @@ public class TfcApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TfcApplication.class, args);
+
     }
 
 }

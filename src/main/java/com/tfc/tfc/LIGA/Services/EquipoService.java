@@ -35,5 +35,8 @@ public class EquipoService {
        return jdbcEquipoReposiroty.cogerMaxId();
     }
 
+    public List<Equipo> buscarPorNombre(String nombre) {
+        return jdbcEquipoReposiroty.buscarEquiposPorNombre(nombre);
+    }
 
 }

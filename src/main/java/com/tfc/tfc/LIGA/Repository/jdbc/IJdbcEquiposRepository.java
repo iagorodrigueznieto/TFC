@@ -10,4 +10,6 @@ public interface IJdbcEquiposRepository {
     List<ClasificacionOutputDto>  clasificacionEquipos(Integer codLiga);
 
     Integer cogerMaxId();
+
+    List<Equipo> buscarEquiposPorNombre(String nombre);
 }

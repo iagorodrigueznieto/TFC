@@ -23,7 +23,7 @@ public class EntrenadorController {
     }
 
     @GetMapping("/entrenador")
-    private ResponseEntity<Entrenador> getEntrenadorById(Integer id) {
+    private ResponseEntity<Entrenador> getEntrenadorById(@RequestParam Integer id) {
         return ResponseEntity.ok(entrenadorService.findEntrenadorPorId(id));
     }
 

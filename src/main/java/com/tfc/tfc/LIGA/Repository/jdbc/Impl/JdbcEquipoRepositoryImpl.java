@@ -35,4 +35,13 @@ public class JdbcEquipoRepositoryImpl implements IJdbcEquiposRepository {
          List <Equipo> a=namedParameterJdbcTemplate.query(QUERY, map,new BeanPropertyRowMapper<>(Equipo.class));
          return a.get(0).getIdEquipo();
     }
+
+    @Override
+    public List<Equipo> buscarEquiposPorNombre(String nombre) {
+        String QUERY = "SELECT * FROM equipos WHERE equipos.nombre_equipo LIKE CONCAT(:nombre, '%')";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("nombre", nombre);
+        return namedParameterJdbcTemplate.query(QUERY, params, new BeanPropertyRowMapper<>(Equipo.class));
+    }
+
 }

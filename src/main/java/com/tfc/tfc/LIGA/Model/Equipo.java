@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -29,5 +30,8 @@ public class Equipo implements Serializable {
     @Column(name = "imagen")
     private String imagen;
 
+
+    @Column(name = "presidente")
+    private String presidente;
 
 }

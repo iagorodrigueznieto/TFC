@@ -33,4 +33,9 @@ public class EquipoController {
     public ResponseEntity<Integer> cogerMaxId(){
         return ResponseEntity.ok(equipoService.cogerMaxId());
     }
+
+    @GetMapping("/nombre")
+    public ResponseEntity<List<Equipo>> buscarPorNombre(@RequestParam String nombre){
+        return ResponseEntity.ok(equipoService.buscarPorNombre(nombre));
+    }
 }
