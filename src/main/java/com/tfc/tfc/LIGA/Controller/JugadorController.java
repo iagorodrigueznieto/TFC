@@ -18,6 +18,19 @@ import java.util.List;
 public class JugadorController {
     private final JugadorService jugadorService;
 
+    @PutMapping
+    public ResponseEntity<?> modificar(@RequestBody Jugador jugador) {
+        ResponseEntity<?> result = ResponseEntity.status(HttpStatus.OK).build();
+        jugadorService.modificarJugador(jugador);
+        return result;
+    }
+    @PostMapping
+    public ResponseEntity<?> crear(@RequestBody Jugador jugador) {
+        ResponseEntity<?> result = ResponseEntity.status(HttpStatus.OK).build();
+        jugadorService.crearJugador(jugador);
+        return result;
+    }
+
     @GetMapping
     public ResponseEntity<List<Jugador>> getAllPlayers() {
         return ResponseEntity.ok(jugadorService.getAllPlayers());
