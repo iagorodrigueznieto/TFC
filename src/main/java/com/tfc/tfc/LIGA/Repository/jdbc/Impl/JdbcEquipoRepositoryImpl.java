@@ -1,6 +1,7 @@
 package com.tfc.tfc.LIGA.Repository.jdbc.Impl;
 
 import com.tfc.tfc.LIGA.Dto.ClasificacionOutputDto;
+import com.tfc.tfc.LIGA.Dto.InfoEquipoEn1LigaOutputDto;
 import com.tfc.tfc.LIGA.Model.Equipo;
 import com.tfc.tfc.LIGA.Repository.jdbc.IJdbcEquiposRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -42,6 +44,20 @@ public class JdbcEquipoRepositoryImpl implements IJdbcEquiposRepository {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("nombre", nombre);
         return namedParameterJdbcTemplate.query(QUERY, params, new BeanPropertyRowMapper<>(Equipo.class));
+    }
+
+    @Override
+    public InfoEquipoEn1LigaOutputDto infoEquipo(Integer codEquipo, Integer codLiga) {
+        String QUERY = "SELECT el.Cod_equipo as codEquipo, el.Cod_liga as codLiga, el.puntos, el.partidos_jugados as partidosJugados,el.partidos_jugados as partidosGanados, "
+                    + "el.partidos_perdidos as partidosPerdidos, el.partidos_empatados as partidosEmpatados, el.goles_a_favor as golesFavor, "
+                    + "el.goles_en_contra as golesContra "
+                    + "FROM equipo_liga el "
+                    + "WHERE el.Cod_equipo = :codEquipo and el.Cod_liga = :codLiga";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("codEquipo", codEquipo);
+        params.addValue("codLiga", codLiga);
+        List<InfoEquipoEn1LigaOutputDto> lista = namedParameterJdbcTemplate.query(QUERY, params, new BeanPropertyRowMapper<>(InfoEquipoEn1LigaOutputDto.class));
+        return lista.get(0);
     }
 
 }

@@ -1,5 +1,7 @@
 package com.tfc.tfc.LIGA.Controller;
 
+import com.tfc.tfc.LIGA.Dto.InfoEquipoEn1LigaOutputDto;
+import org.springframework.http.HttpStatus;
 import com.tfc.tfc.LIGA.Dto.ClasificacionOutputDto;
 import com.tfc.tfc.LIGA.Model.Equipo;
 import com.tfc.tfc.LIGA.Services.EquipoService;
@@ -38,4 +40,22 @@ public class EquipoController {
     public ResponseEntity<List<Equipo>> buscarPorNombre(@RequestParam String nombre){
         return ResponseEntity.ok(equipoService.buscarPorNombre(nombre));
     }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteEquipo(@RequestParam int id) {
+        ResponseEntity<?> result = ResponseEntity.status(HttpStatus.OK).build();
+        equipoService.eliminarEquipo(id);
+        return result;
+    }
+
+    @PutMapping
+    public ResponseEntity<Equipo> updateEquipo(@RequestBody Equipo equipo){
+        return ResponseEntity.ok(equipoService.actualizarEquipo(equipo));
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity<InfoEquipoEn1LigaOutputDto> infoEquipo(@RequestParam Integer  codLiga, @RequestParam Integer codEquipo){
+        return ResponseEntity.ok(equipoService.recuperarInfoDe1EquipoEn1Liga(codEquipo, codLiga));
+    }
+
 }

@@ -48,17 +48,24 @@ public class JugadorService {
     }
 
     public void modificarJugador(Jugador jugador) {
-        Jugador jugadorExistente = JugadorRepository.findById(jugador.getIdJugador()).orElse(null);
+        Jugador jugadorExistente = JugadorRepository.findById(jugador.getId_jugador()).orElse(null);
        if(jugadorExistente!=null){
-           jugadorExistente.setIdJugador(jugador.getIdJugador());
+           jugadorExistente.setId_jugador(jugador.getId_jugador());
            jugadorExistente.setNombre(jugador.getNombre());
+           jugadorExistente.setAsistencias(jugador.getAsistencias());
+           jugadorExistente.setGoles(jugador.getGoles());
+           jugadorExistente.setTarjetasAmarillas(jugador.getTarjetasAmarillas());
+           jugadorExistente.setTarjetasRojas(jugador.getTarjetasRojas());
            jugadorExistente.setFechaNacimiento(jugador.getFechaNacimiento());
-           jugadorExistente.setCodPosicion(jugador.getCodPosicion());
-           jugadorExistente.setIdEquipo(jugador.getIdEquipo());
-           jugadorExistente.setImagen(jugador.getImagen());
+           jugadorExistente.setCod_Posicion(jugador.getCod_Posicion());
            JugadorRepository.save(jugadorExistente);
+        }
        }
 
-       }
+        public List<Jugador> getJugadoresDe1EquipoEn1Posicion(Integer codEquipo,Integer codLiga) {
+            return jugadorRepositoryImpl.buscarJugadoresDe1EquipoDe1Posicion(codEquipo,codLiga);
+
+        }
+
     }
 

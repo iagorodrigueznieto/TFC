@@ -53,7 +53,7 @@ public class JugadorController {
     }
 
     @GetMapping("/equipo")
-    public ResponseEntity<List<Jugador>> getJugadorDe1Equipo(@RequestParam Integer codEquipo) {
+    public ResponseEntity<List<Jugador>> getJugadoresDe1Equipo(@RequestParam Integer codEquipo) {
         return ResponseEntity.ok(jugadorService.getJugadoresDe1Equipo(codEquipo));
     }
 
@@ -64,6 +64,13 @@ public class JugadorController {
         jugadorService.eliminarJugador(id);
         return result;
     }
+
+    @GetMapping("/posicion")
+    public ResponseEntity<List<Jugador>> getJugadoresDe1Posicion(@RequestParam Integer codEquipo, @RequestParam Integer posicion) {
+        return ResponseEntity.ok(jugadorService.getJugadoresDe1EquipoEn1Posicion(codEquipo,posicion));
+    }
+
+
 
 
 }

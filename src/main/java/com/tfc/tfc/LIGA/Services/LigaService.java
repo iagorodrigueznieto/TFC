@@ -1,5 +1,6 @@
 package com.tfc.tfc.LIGA.Services;
 
+import com.tfc.tfc.LIGA.Dto.InfoEquipoEn1LigaOutputDto;
 import com.tfc.tfc.LIGA.Model.Liga;
 import com.tfc.tfc.LIGA.Repository.LigaRepository;
 import com.tfc.tfc.LIGA.Repository.jdbc.IJdbcLigaRepository;
@@ -35,6 +36,15 @@ public class LigaService {
     public void deleteLiga(Liga liga) {
         ligaRepository.delete(liga);
     }
+
+    public void deleteEquipoLiga(Integer codEquipo,Integer codLiga){
+        jdbcLigaRepository.eliminar1Equipod1liga(codEquipo,codLiga);
+    }
+
+    public void modificarEquipoLiga(InfoEquipoEn1LigaOutputDto  infoEquipoEn1LigaOutputDto){
+        jdbcLigaRepository.modificarEquipoLiga(infoEquipoEn1LigaOutputDto);
+    }
+
 
 
 }

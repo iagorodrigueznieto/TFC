@@ -1,51 +1,64 @@
 package com.tfc.tfc.LIGA.Model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import java.io.Serializable;
-import java.sql.Date;
-
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "jugador")
-public class Jugador implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class Jugador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_jugador", nullable = false)
-    private Integer idJugador;
+    private Integer id_jugador;
 
-    @Column(name = "nombre")
+    @Size(max = 100)
+    @Column(name = "nombre", length = 100)
     private String nombre;
 
+    @Size(max = 255)
     @Column(name = "fecha_nacimiento")
     private String fechaNacimiento;
 
-    @Column(name = "id_equipo", nullable = false)
-    private Integer idEquipo;
+    @OnDelete(action = OnDeleteAction.SET_DEFAULT)
+    @ColumnDefault("3333")
+    @JoinColumn(name = "id_equipo")
+    private Integer id_equipo;
 
+    @NotNull
     @Column(name = "Tarjetas_Amarillas", nullable = false)
     private Integer tarjetasAmarillas;
 
+    @NotNull
     @Column(name = "Tarjetas_Rojas", nullable = false)
     private Integer tarjetasRojas;
 
+    @NotNull
     @Column(name = "Partidos_Jugados", nullable = false)
     private Integer partidosJugados;
 
+    @NotNull
     @Column(name = "Goles", nullable = false)
     private Integer goles;
 
+    @NotNull
     @Column(name = "Asistencias", nullable = false)
     private Integer asistencias;
 
-    @Column(name = "imagen")
+    @Size(max = 400)
+    @Column(name = "imagen", length = 400)
     private String imagen;
 
-    @Column(name = "Cod_Posicion", nullable = false)
-    private Integer codPosicion;
+    @NotNull
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "Cod_Posicion", nullable = false)
+    private Integer Cod_Posicion;
 
 }

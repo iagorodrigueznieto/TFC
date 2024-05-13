@@ -1,5 +1,6 @@
 package com.tfc.tfc.LIGA.Controller;
 
+import com.tfc.tfc.LIGA.Dto.InfoEquipoEn1LigaOutputDto;
 import com.tfc.tfc.LIGA.Model.Liga;
 import com.tfc.tfc.LIGA.Services.LigaService;
 import lombok.AllArgsConstructor;
@@ -38,6 +39,18 @@ public class LigaController {
     @DeleteMapping
     private ResponseEntity<Liga> updateLiga(@RequestParam Integer codLiga) {
         return ResponseEntity.ok(ligaService.crearLiga(ligaService.getLigaById(codLiga)));
+    }
+
+    @DeleteMapping("/eliminar")
+    private ResponseEntity<?> deleteLiga(@RequestParam Integer codEquipo,@RequestParam Integer codLiga) {
+        ligaService.deleteEquipoLiga(codEquipo, codLiga);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/info")
+    private ResponseEntity<?> modificarEquipoLiga(@RequestBody InfoEquipoEn1LigaOutputDto  infoEquipoEn1LigaOutputDto) {
+        ligaService.modificarEquipoLiga(infoEquipoEn1LigaOutputDto);
+        return ResponseEntity.ok().build();
     }
 
 

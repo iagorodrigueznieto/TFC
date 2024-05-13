@@ -13,6 +13,9 @@ public interface IJdbcJugadorRepository {
     List<Jugador> buscarMaximosGoleadoresDe1Liga(Integer codLiga);
 
     List<Jugador> buscarJugadoresDe1Equipo(Integer codEquipo);
+
+    List<Jugador> buscarJugadoresDe1EquipoDe1Posicion(Integer codEquipo, Integer codPosicion);
+
 }
 
 

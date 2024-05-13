@@ -39,11 +39,24 @@ public class JdbcJugadorRepositoryImpl implements IJdbcJugadorRepository {
     }
 
     @Override
-    public List<Jugador> buscarJugadoresDe1Equipo(Integer idEquipo) {
+    public List<Jugador>
+    buscarJugadoresDe1Equipo(Integer idEquipo) {
         String QUERY = "SELECT * from jugador j "
                 + "WHERE id_equipo = :idEquipo ";
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("idEquipo", idEquipo);
         return namedParameterJdbcTemplate.query(QUERY, params, new BeanPropertyRowMapper<>(Jugador.class));
     }
+
+    @Override
+    public List<Jugador> buscarJugadoresDe1EquipoDe1Posicion(Integer codEquipo, Integer codPosicion) {
+                String QUERY = "SELECT * from jugador j "
+                + "WHERE id_equipo = :codEquipo and cod_posicion = :codPosicion ";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("codEquipo", codEquipo);
+        params.addValue("codPosicion", codPosicion);
+        return namedParameterJdbcTemplate.query(QUERY, params, new BeanPropertyRowMapper<>(Jugador.class));
+    }
+
+
 }
