@@ -4,11 +4,8 @@ package com.tfc.tfc.LIGA.Services;
 import com.tfc.tfc.LIGA.Model.Entrenador;
 import com.tfc.tfc.LIGA.Repository.EntrenadorRepository;
 
-import com.tfc.tfc.LIGA.Repository.jdbc.IJdbcEntrenadorRepository;
 import com.tfc.tfc.LIGA.Repository.jdbc.Impl.JdbcEntrenadorRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,6 +39,22 @@ public class EntrenadorService {
 
     public List<Entrenador> findEntrenadorWithNoTeam() {
         return jdbcEntrenadorRepository.findEntrenadorWithNoTeam();
+    }
+
+    public List<Entrenador> findEntrenador(String nombre) {
+        return jdbcEntrenadorRepository.findEntrenadorPorNombre(nombre);
+    }
+
+    public void actualizarEntrenador(Entrenador entrenador) {
+     Entrenador antiguo = entrenadorRepository.findById(entrenador.getIdEntrenador()).orElse(null);
+     if(antiguo != null) {
+         antiguo.setNombre(entrenador.getNombre());
+         antiguo.setApellido(entrenador.getApellido());
+         antiguo.setFechaDeNacimiento(entrenador.getFechaDeNacimiento());
+         antiguo.setNacionalidad(entrenador.getNacionalidad());
+         entrenadorRepository.save(antiguo);
+     }
+        //entrenadorRepository.save(entrenador
     }
 
 

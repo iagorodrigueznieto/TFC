@@ -9,4 +9,6 @@ import java.util.List;
 public interface IJdbcEntrenadorRepository {
 
     List<Entrenador> findEntrenadorWithNoTeam();
+
+    List<Entrenador> findEntrenadorPorNombre(String nombre);
 }

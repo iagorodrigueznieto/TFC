@@ -1,39 +1,34 @@
 package com.tfc.tfc.LIGA.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.io.Serializable;
-import java.sql.Date;
-
-@Data
+@Getter
+@Setter
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "entrenador")
-public class Entrenador implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class Entrenador {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_entrenador", nullable = false)
     private Integer idEntrenador;
 
-    @Column(name = "nombre")
+    @Size(max = 100)
+    @Column(name = "nombre", length = 100)
     private String nombre;
 
-    @Column(name = "apellido")
+    @Size(max = 100)
+    @Column(name = "apellido", length = 100)
     private String apellido;
 
-    @Column(name = "nacionalidad")
+    @Size(max = 100)
+    @Column(name = "nacionalidad", length = 100)
     private String nacionalidad;
 
+    @Size(max = 255)
     @Column(name = "fecha_de_nacimiento")
-    private Date fechaDeNacimiento;
+    private String fechaDeNacimiento;
 
 }

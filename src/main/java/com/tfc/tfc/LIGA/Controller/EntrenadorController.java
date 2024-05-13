@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -36,18 +35,25 @@ public class EntrenadorController {
 
     @PostMapping
     private ResponseEntity<Entrenador> postEntrenador(@RequestBody Entrenador entrenador) {
-
-        if (entrenadorService.findEntrenadorPorId(entrenador.getIdEntrenador()) == null) {
             return ResponseEntity.ok((entrenadorService.guardarEntrenador(entrenador)));
-        } else {
-            return ResponseEntity.ok(entrenador);
-        }
 
     }
 
     @GetMapping("/libres")
     private ResponseEntity<List<Entrenador>> getEntrenadoresLibres() {
         return ResponseEntity.ok(entrenadorService.findEntrenadorWithNoTeam());
+    }
+
+
+    @GetMapping("/nombre")
+    private ResponseEntity<List<Entrenador>> getEntrenadoresPorNombre(@RequestParam String nombre) {
+        return ResponseEntity.ok(entrenadorService.findEntrenador(nombre));
+    }
+
+    @PutMapping
+    private ResponseEntity<?> updateEntrenador(@RequestBody Entrenador entrenador) {
+        entrenadorService.actualizarEntrenador(entrenador);
+        return ResponseEntity.ok().build();
     }
 
 }
