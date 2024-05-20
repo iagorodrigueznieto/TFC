@@ -60,4 +60,8 @@ public class EquipoService {
     public InfoEquipoEn1LigaOutputDto recuperarInfoDe1EquipoEn1Liga(Integer codEquipo, Integer codLiga){
         return jdbcEquipoReposiroty.infoEquipo(codEquipo,codLiga);
     }
+
+    public List<Equipo> equiposDe1Liga(Integer codLiga){
+        return jdbcEquipoReposiroty.equiposDe1Liga(codLiga);
+    }
 }

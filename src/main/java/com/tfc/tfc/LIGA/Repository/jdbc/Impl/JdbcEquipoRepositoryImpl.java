@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -58,6 +57,17 @@ public class JdbcEquipoRepositoryImpl implements IJdbcEquiposRepository {
         params.addValue("codLiga", codLiga);
         List<InfoEquipoEn1LigaOutputDto> lista = namedParameterJdbcTemplate.query(QUERY, params, new BeanPropertyRowMapper<>(InfoEquipoEn1LigaOutputDto.class));
         return lista.get(0);
+    }
+
+    @Override
+    public List<Equipo> equiposDe1Liga (Integer codLiga) {
+        String QUERY = "select e.* from equipos e " +
+                "inner join equipo_liga el on el.Cod_equipo = e.id_equipo " +
+                "where el.Cod_liga = :codliga " +
+                "order by el.puntos desc";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("codliga", codLiga);
+        return namedParameterJdbcTemplate.query(QUERY, params, new BeanPropertyRowMapper<>(Equipo.class));
     }
 
 }

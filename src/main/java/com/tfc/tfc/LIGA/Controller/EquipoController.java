@@ -58,4 +58,9 @@ public class EquipoController {
         return ResponseEntity.ok(equipoService.recuperarInfoDe1EquipoEn1Liga(codEquipo, codLiga));
     }
 
+    @GetMapping("/liga")
+    public ResponseEntity<List<Equipo>> equipos1Liga(@RequestParam Integer codLiga){
+        return ResponseEntity.ok(equipoService.equiposDe1Liga(codLiga));
+    }
+
 }

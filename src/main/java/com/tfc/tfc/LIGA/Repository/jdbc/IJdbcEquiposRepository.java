@@ -15,4 +15,7 @@ public interface IJdbcEquiposRepository {
     List<Equipo> buscarEquiposPorNombre(String nombre);
 
     InfoEquipoEn1LigaOutputDto infoEquipo(Integer codEquipo,Integer codLiga);
+
+    List<Equipo> equiposDe1Liga(Integer codLiga);
+    
 }

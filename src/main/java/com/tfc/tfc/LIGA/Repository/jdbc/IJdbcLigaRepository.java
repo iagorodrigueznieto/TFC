@@ -10,4 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface IJdbcLigaRepository {
     int eliminar1Equipod1liga(Integer codEquipo,Integer codLiga);
     int modificarEquipoLiga(InfoEquipoEn1LigaOutputDto infoEquipoEn1LigaOutputDto);
+    int insertar1EquipoEn1Liga(Integer codEquipo,Integer codLiga);
+
+
 }

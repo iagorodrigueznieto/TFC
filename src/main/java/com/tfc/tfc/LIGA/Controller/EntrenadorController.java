@@ -56,4 +56,6 @@ public class EntrenadorController {
         return ResponseEntity.ok().build();
     }
 
+
+
 }

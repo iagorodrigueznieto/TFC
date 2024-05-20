@@ -45,6 +45,10 @@ public class LigaService {
         jdbcLigaRepository.modificarEquipoLiga(infoEquipoEn1LigaOutputDto);
     }
 
+    public void insertarEquipoEn1Liga(Integer codEquipo,Integer codLiga){
+        jdbcLigaRepository.insertar1EquipoEn1Liga(codEquipo,codLiga);
+    }
+
 
 
 }

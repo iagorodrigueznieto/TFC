@@ -29,11 +29,7 @@ public class LigaController {
 
     @PostMapping("/crear")
     private ResponseEntity<Liga> createLiga(@RequestBody Liga liga) {
-        if (ligaService.getLigaById(liga.getCodLiga()) == null) {
             return ResponseEntity.ok(ligaService.crearLiga(liga));
-        } else {
-            return ResponseEntity.ok(ligaService.getLigaById(liga.getCodLiga()));
-        }
     }
 
     @DeleteMapping
@@ -52,6 +48,13 @@ public class LigaController {
         ligaService.modificarEquipoLiga(infoEquipoEn1LigaOutputDto);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/insertar")
+    private ResponseEntity<?> insertar1EquipoEn1liga(@RequestParam Integer codEquipo,@RequestParam Integer codLiga){
+        ligaService.insertarEquipoEn1Liga(codEquipo,codLiga);
+        return ResponseEntity.ok().build();
+    }
+
 
 
 

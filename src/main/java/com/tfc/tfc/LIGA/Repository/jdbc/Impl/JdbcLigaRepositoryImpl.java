@@ -45,4 +45,24 @@ public class JdbcLigaRepositoryImpl implements IJdbcLigaRepository {
         params.addValue("codLiga", infoEquipoEn1LigaOutputDto.getCodLiga());
         return namedParameterJdbcTemplate.update(UPDATE_QUERY, params);
     }
+
+    @Override
+    public int insertar1EquipoEn1Liga(Integer codEquipo,Integer codLiga) {
+        final String QUERY =  "insert  into equipo_liga " +
+                "values ( " +
+                " :codEquipo," +
+                " :codLiga, " +
+                " 0," +
+                " 0," +
+                " 0," +
+                " 0," +
+                " 0," +
+                " 0," +
+                " 0" +
+                ")";
+        MapSqlParameterSource param= new  MapSqlParameterSource();
+        param.addValue("codEquipo",codEquipo);
+        param.addValue("codLiga",codLiga);
+        return namedParameterJdbcTemplate.update(QUERY,param);
+    }
 }
