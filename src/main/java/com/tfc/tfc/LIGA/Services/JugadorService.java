@@ -4,17 +4,23 @@ import com.tfc.tfc.LIGA.Model.Jugador;
 import com.tfc.tfc.LIGA.Repository.JugadorRepository;
 import com.tfc.tfc.LIGA.Repository.jdbc.IJdbcJugadorRepository;
 import lombok.RequiredArgsConstructor;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class JugadorService {
 
+
+
     @Qualifier("IJdbcJugadorRepository")
     private final IJdbcJugadorRepository jugadorRepositoryImpl;
+
+    private final ReportService reportService;
 
     private final JugadorRepository JugadorRepository;
 
@@ -65,6 +71,20 @@ public class JugadorService {
         public List<Jugador> getJugadoresDe1EquipoEn1Posicion(Integer codEquipo,Integer codLiga) {
             return jugadorRepositoryImpl.buscarJugadoresDe1EquipoDe1Posicion(codEquipo,codLiga);
 
+        }
+
+
+        public void traspasarJugador(Integer idJugador, Integer codEquipo){
+            Jugador antiguo = JugadorRepository.findById(idJugador).orElse(null);
+            if (antiguo!=null){
+                antiguo.setId_equipo(codEquipo);
+            }
+            assert antiguo != null;
+            JugadorRepository.save(antiguo);
+        }
+
+        public byte[] exportPdf() throws JRException, FileNotFoundException {
+            return reportService.exportToPdf(JugadorRepository.findAll());
         }
 
     }

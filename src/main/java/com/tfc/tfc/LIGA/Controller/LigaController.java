@@ -3,6 +3,7 @@ package com.tfc.tfc.LIGA.Controller;
 import com.tfc.tfc.LIGA.Dto.InfoEquipoEn1LigaOutputDto;
 import com.tfc.tfc.LIGA.Model.Liga;
 import com.tfc.tfc.LIGA.Services.LigaService;
+import io.swagger.models.Response;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
@@ -40,6 +41,12 @@ public class LigaController {
     @DeleteMapping("/eliminar")
     private ResponseEntity<?> deleteLiga(@RequestParam Integer codEquipo,@RequestParam Integer codLiga) {
         ligaService.deleteEquipoLiga(codEquipo, codLiga);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping
+    private ResponseEntity<?> modificarLiga(@RequestBody Liga liga){
+        ligaService.modificarLiga(liga);
         return ResponseEntity.ok().build();
     }
 

@@ -37,18 +37,28 @@ public class LigaService {
         ligaRepository.delete(liga);
     }
 
-    public void deleteEquipoLiga(Integer codEquipo,Integer codLiga){
-        jdbcLigaRepository.eliminar1Equipod1liga(codEquipo,codLiga);
+    public void deleteEquipoLiga(Integer codEquipo, Integer codLiga) {
+        jdbcLigaRepository.eliminar1Equipod1liga(codEquipo, codLiga);
     }
 
-    public void modificarEquipoLiga(InfoEquipoEn1LigaOutputDto  infoEquipoEn1LigaOutputDto){
+    public void modificarEquipoLiga(InfoEquipoEn1LigaOutputDto infoEquipoEn1LigaOutputDto) {
         jdbcLigaRepository.modificarEquipoLiga(infoEquipoEn1LigaOutputDto);
     }
 
-    public void insertarEquipoEn1Liga(Integer codEquipo,Integer codLiga){
-        jdbcLigaRepository.insertar1EquipoEn1Liga(codEquipo,codLiga);
+    public void insertarEquipoEn1Liga(Integer codEquipo, Integer codLiga) {
+        jdbcLigaRepository.insertar1EquipoEn1Liga(codEquipo, codLiga);
     }
 
+    public void modificarLiga(Liga liga) {
+        Liga antiguo = ligaRepository.findById(liga.getCodLiga()).orElse(null);
+        if (antiguo != null) {
+            antiguo.setCodLiga(liga.getCodLiga());
+            antiguo.setNacional(liga.getNacional());
+            antiguo.setNombre(liga.getNombre());
+        }
+        assert antiguo != null;
+        ligaRepository.save(antiguo);
+    }
 
 
 }
