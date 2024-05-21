@@ -30,42 +30,38 @@ public class LigaController {
 
     @PostMapping("/crear")
     private ResponseEntity<Liga> createLiga(@RequestBody Liga liga) {
-            return ResponseEntity.ok(ligaService.crearLiga(liga));
-    }
-
-    @DeleteMapping
-    private ResponseEntity<Liga> updateLiga(@RequestParam Integer codLiga) {
-        return ResponseEntity.ok(ligaService.crearLiga(ligaService.getLigaById(codLiga)));
+        return ResponseEntity.ok(ligaService.crearLiga(liga));
     }
 
     @DeleteMapping("/eliminar")
-    private ResponseEntity<?> deleteLiga(@RequestParam Integer codEquipo,@RequestParam Integer codLiga) {
+    private ResponseEntity<?> deleteLiga(@RequestParam Integer codEquipo, @RequestParam Integer codLiga) {
         ligaService.deleteEquipoLiga(codEquipo, codLiga);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping
-    private ResponseEntity<?> modificarLiga(@RequestBody Liga liga){
+    private ResponseEntity<?> modificarLiga(@RequestBody Liga liga) {
         ligaService.modificarLiga(liga);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/info")
-    private ResponseEntity<?> modificarEquipoLiga(@RequestBody InfoEquipoEn1LigaOutputDto  infoEquipoEn1LigaOutputDto) {
+    private ResponseEntity<?> modificarEquipoLiga(@RequestBody InfoEquipoEn1LigaOutputDto infoEquipoEn1LigaOutputDto) {
         ligaService.modificarEquipoLiga(infoEquipoEn1LigaOutputDto);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/insertar")
-    private ResponseEntity<?> insertar1EquipoEn1liga(@RequestParam Integer codEquipo,@RequestParam Integer codLiga){
-        ligaService.insertarEquipoEn1Liga(codEquipo,codLiga);
+    private ResponseEntity<?> insertar1EquipoEn1liga(@RequestParam Integer codEquipo, @RequestParam Integer codLiga) {
+        ligaService.insertarEquipoEn1Liga(codEquipo, codLiga);
         return ResponseEntity.ok().build();
     }
 
-
-
-
-
+    @DeleteMapping
+    private ResponseEntity<?> eliminarLiga(@RequestParam Integer codLiga) {
+        ligaService.deleteLiga(codLiga);
+        return ResponseEntity.ok().build();
+    }
 
 
 }

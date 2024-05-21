@@ -33,8 +33,8 @@ public class LigaService {
         return ligaRepository.findById(id).orElse(null);
     }
 
-    public void deleteLiga(Liga liga) {
-        ligaRepository.delete(liga);
+    public void deleteLiga(Integer codLiga) {
+        ligaRepository.findById(codLiga).ifPresent(ligaRepository::delete);
     }
 
     public void deleteEquipoLiga(Integer codEquipo, Integer codLiga) {
