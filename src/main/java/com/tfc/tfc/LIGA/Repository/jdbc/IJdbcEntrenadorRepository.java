@@ -11,4 +11,6 @@ public interface IJdbcEntrenadorRepository {
     List<Entrenador> findEntrenadorWithNoTeam();
 
     List<Entrenador> findEntrenadorPorNombre(String nombre);
+
+    void updateEntrenadorEquipo(Entrenador entrenador, Integer idEquipo);
 }

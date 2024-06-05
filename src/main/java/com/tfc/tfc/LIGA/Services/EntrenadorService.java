@@ -30,7 +30,7 @@ public class EntrenadorService {
     }
 
     public Entrenador guardarEntrenador(Entrenador entrenador) {
-       return entrenadorRepository.save(entrenador);
+        return entrenadorRepository.save(entrenador);
     }
 
     public void eliminarEntrenador(Entrenador entrenador) {
@@ -46,19 +46,21 @@ public class EntrenadorService {
     }
 
     public void actualizarEntrenador(Entrenador entrenador) {
-     Entrenador antiguo = entrenadorRepository.findById(entrenador.getIdEntrenador()).orElse(null);
-     if(antiguo != null) {
-         antiguo.setNombre(entrenador.getNombre());
-         antiguo.setApellido(entrenador.getApellido());
-         antiguo.setFechaDeNacimiento(entrenador.getFechaDeNacimiento());
-         antiguo.setNacionalidad(entrenador.getNacionalidad());
-         entrenadorRepository.save(antiguo);
-     }
+        Entrenador antiguo = entrenadorRepository.findById(entrenador.getIdEntrenador()).orElse(null);
+        if (antiguo != null) {
+            antiguo.setNombre(entrenador.getNombre());
+            antiguo.setApellido(entrenador.getApellido());
+            antiguo.setFechaDeNacimiento(entrenador.getFechaDeNacimiento());
+            antiguo.setNacionalidad(entrenador.getNacionalidad());
+            entrenadorRepository.save(antiguo);
+        }
         //entrenadorRepository.save(entrenador
     }
 
 
-
+    public void actualizarEntrenadorDeEquipo(Entrenador entrenador, Integer idEquipo) {
+        jdbcEntrenadorRepository.updateEntrenadorEquipo(entrenador, idEquipo);
+    }
 
 
 }

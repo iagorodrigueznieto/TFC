@@ -32,4 +32,13 @@ public class JdbcEntrenadorRepository implements IJdbcEntrenadorRepository {
         params.addValue("nombre",nombre);
         return namedParameterJdbcTemplate.query(QUERY, params,new BeanPropertyRowMapper<>(Entrenador.class));
     }
+
+    @Override
+    public void updateEntrenadorEquipo(Entrenador entrenador, Integer idEquipo) {
+        String QUERY = "update equipos set equipos.id_entrenador = :idEntrenador where id_equipo = :idEquipo";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("idEntrenador", entrenador.getIdEntrenador());
+        params.addValue("idEquipo", idEquipo);
+        namedParameterJdbcTemplate.update(QUERY, params);
+    }
 }

@@ -2,6 +2,7 @@ package com.tfc.tfc.LIGA.Controller;
 
 import com.tfc.tfc.LIGA.Model.Entrenador;
 import com.tfc.tfc.LIGA.Services.EntrenadorService;
+import io.swagger.models.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class EntrenadorController {
 
     @PostMapping
     private ResponseEntity<Entrenador> postEntrenador(@RequestBody Entrenador entrenador) {
-            return ResponseEntity.ok((entrenadorService.guardarEntrenador(entrenador)));
+        return ResponseEntity.ok((entrenadorService.guardarEntrenador(entrenador)));
 
     }
 
@@ -56,6 +57,15 @@ public class EntrenadorController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/equipo")
+    private ResponseEntity<?> updateEntrenadorEn1Equipo(@RequestBody Entrenador entrenador, @RequestParam Integer idEquipo) {
+        entrenadorService.actualizarEntrenadorDeEquipo(entrenador, idEquipo);
+        return ResponseEntity.ok().build();
+    }
 
+    @GetMapping("/find")
+    private ResponseEntity<Entrenador> findEntrenadorPorId(@RequestParam Integer id) {
+        return ResponseEntity.ok(entrenadorService.findEntrenadorPorId(id));
+    }
 
 }

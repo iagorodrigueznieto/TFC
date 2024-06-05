@@ -16,7 +16,6 @@ import java.util.List;
 public class JugadorService {
 
 
-
     @Qualifier("IJdbcJugadorRepository")
     private final IJdbcJugadorRepository jugadorRepositoryImpl;
 
@@ -55,37 +54,39 @@ public class JugadorService {
 
     public void modificarJugador(Jugador jugador) {
         Jugador jugadorExistente = JugadorRepository.findById(jugador.getId_jugador()).orElse(null);
-       if(jugadorExistente!=null){
-           jugadorExistente.setId_jugador(jugador.getId_jugador());
-           jugadorExistente.setNombre(jugador.getNombre());
-           jugadorExistente.setAsistencias(jugador.getAsistencias());
-           jugadorExistente.setGoles(jugador.getGoles());
-           jugadorExistente.setTarjetasAmarillas(jugador.getTarjetasAmarillas());
-           jugadorExistente.setTarjetasRojas(jugador.getTarjetasRojas());
-           jugadorExistente.setFechaNacimiento(jugador.getFechaNacimiento());
-           jugadorExistente.setCod_Posicion(jugador.getCod_Posicion());
-           JugadorRepository.save(jugadorExistente);
+        if (jugadorExistente != null) {
+            jugadorExistente.setId_jugador(jugador.getId_jugador());
+            jugadorExistente.setNombre(jugador.getNombre());
+            jugadorExistente.setCod_Posicion(jugador.getCod_Posicion());
+            jugadorExistente.setId_equipo(jugador.getId_equipo());
+            jugadorExistente.setAsistencias(jugador.getAsistencias());
+            jugadorExistente.setGoles(jugador.getGoles());
+            jugadorExistente.setTarjetasAmarillas(jugador.getTarjetasAmarillas());
+            jugadorExistente.setTarjetasRojas(jugador.getTarjetasRojas());
+            jugadorExistente.setFechaNacimiento(jugador.getFechaNacimiento());
+            jugadorExistente.setCod_Posicion(jugador.getCod_Posicion());
+            JugadorRepository.save(jugadorExistente);
         }
-       }
+    }
 
-        public List<Jugador> getJugadoresDe1EquipoEn1Posicion(Integer codEquipo,Integer codLiga) {
-            return jugadorRepositoryImpl.buscarJugadoresDe1EquipoDe1Posicion(codEquipo,codLiga);
-
-        }
-
-
-        public void traspasarJugador(Integer idJugador, Integer codEquipo){
-            Jugador antiguo = JugadorRepository.findById(idJugador).orElse(null);
-            if (antiguo!=null){
-                antiguo.setId_equipo(codEquipo);
-            }
-            assert antiguo != null;
-            JugadorRepository.save(antiguo);
-        }
-
-        public byte[] exportPdf() throws JRException, FileNotFoundException {
-            return reportService.exportToPdf(JugadorRepository.findAll());
-        }
+    public List<Jugador> getJugadoresDe1EquipoEn1Posicion(Integer codEquipo, Integer codLiga) {
+        return jugadorRepositoryImpl.buscarJugadoresDe1EquipoDe1Posicion(codEquipo, codLiga);
 
     }
+
+
+    public void traspasarJugador(Integer idJugador, Integer codEquipo) {
+        Jugador antiguo = JugadorRepository.findById(idJugador).orElse(null);
+        if (antiguo != null) {
+            antiguo.setId_equipo(codEquipo);
+        }
+        assert antiguo != null;
+        JugadorRepository.save(antiguo);
+    }
+
+    public byte[] exportPdf() throws JRException, FileNotFoundException {
+        return reportService.exportToPdf(JugadorRepository.findAll());
+    }
+
+}
 
