@@ -47,7 +47,7 @@ public class JdbcEquipoRepositoryImpl implements IJdbcEquiposRepository {
 
     @Override
     public InfoEquipoEn1LigaOutputDto infoEquipo(Integer codEquipo, Integer codLiga) {
-        String QUERY = "SELECT el.Cod_equipo as codEquipo, el.Cod_liga as codLiga, el.puntos, el.partidos_jugados as partidosJugados,el.partidos_jugados as partidosGanados, "
+        String QUERY = "SELECT el.Cod_equipo as codEquipo, el.Cod_liga as codLiga, el.puntos, el.partidos_jugados as partidosJugados,el.partidos_ganados as partidosGanados, "
                     + "el.partidos_perdidos as partidosPerdidos, el.partidos_empatados as partidosEmpatados, el.goles_a_favor as golesFavor, "
                     + "el.goles_en_contra as golesContra "
                     + "FROM equipo_liga el "
